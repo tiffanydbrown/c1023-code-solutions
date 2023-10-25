@@ -72,7 +72,7 @@ function getKeys(obj) {
   const keys = [];
 
   for (const key in obj) {
-    keys.push(obj[key]);
+    keys.push(key);
   }
   return keys;
 }
@@ -93,7 +93,7 @@ function getValues(obj) {
   const values = [];
 
   for (const key in obj) {
-    values.push(key);
+    values.push(obj[key]);
   }
   return values;
 }
