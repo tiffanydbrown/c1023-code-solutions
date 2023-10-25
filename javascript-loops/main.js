@@ -93,7 +93,7 @@ function getValues(obj) {
   const values = [];
 
   for (const key in obj) {
-    values.push(obj[key]);
+    values.push(key);
   }
   return values;
 }
