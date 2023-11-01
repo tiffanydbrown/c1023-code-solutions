@@ -1,0 +1,14 @@
+button:hover {
+  background-color: rgb(4, 4, 4);
+  color: rgb(253, 249, 249);
+}
+
+th:nth-child(-n + 3) {
+  background-color: black;
+  color: rgb(253, 249, 249);
+}
+
+tr:nth-child(odd) {
+  background-color: rgb(223, 222, 222);
+  color: rgb(4, 4, 4);
+}
