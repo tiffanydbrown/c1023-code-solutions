@@ -1,0 +1,26 @@
+h1 {
+  color: #f18f8a;
+  text-align: center;
+}
+
+#section > label {
+  justify-content: space-between;
+}
+
+button {
+  background-color: #f18f8a;
+  color: #fff;
+}
+
+select {
+  background-color: #dedede;
+}
+
+.wrapper {
+  width: 275px;
+  margin: 0 auto;
+}
+
+.right {
+  text-align: right;
+}
