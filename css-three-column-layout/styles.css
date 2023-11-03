@@ -3,6 +3,7 @@
   margin-left: auto;
   margin-right: auto;
   color: #fff;
+  text-align: center;
 }
 
 body {
@@ -38,8 +39,10 @@ body {
 }
 
 .column-one-third {
+  display: flex;
   flex-basis: calc(100% / 3);
   color: #fff;
-
-  /* text-align: center; */
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
