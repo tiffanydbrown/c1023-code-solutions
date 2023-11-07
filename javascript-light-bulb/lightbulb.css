@@ -1,0 +1,36 @@
+.container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100vw;
+  height: 100vh;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.center {
+  width: 200px;
+  height: 200px;
+  border-radius: 100px;
+  right: 650px;
+  top: 300px;
+}
+
+.center.light {
+  background-color: #faea84;
+  border: #fbeb88;
+}
+
+.center.dark {
+  background-color: #252525;
+  border: #0d0d0d;
+}
+
+.container.bulbOn {
+  background-color: #fef9f1;
+}
+
+.container.bulbOff {
+  background-color: #252525;
+  background-color: #111;
+}
