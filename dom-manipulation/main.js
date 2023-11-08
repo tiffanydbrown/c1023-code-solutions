@@ -21,9 +21,4 @@ function clicker(event) {
   }
 }
 $btn.addEventListener('click', clicker);
-document
-  .getElementsByClassName('.click-count')
-  .addEventListener('click', clicker);
-
-// const clickcount = document.getElementsByClassName(".click-count");
-// $ccount.value = clickcount.textContent;
+document.getElementsByClassName('.click-count');
