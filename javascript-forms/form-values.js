@@ -4,17 +4,16 @@ $contact.addEventListener('submit', handleSubmit);
 function handleSubmit(event) {
   event.preventDefault();
 
+  const name = $contact.elements.name.value;
+  const email = $contact.elements.email.value;
+  const message = $contact.elements.message.value;
+
   const obj = {
-    name: $contact.elements.name.value,
-    // email: $contact.elements.email.value
-    // message: $contact.elements.message.value
-  };
-  const obj2 = {
-    email: $contact.elements.email.value,
-  };
-  const obj3 = {
-    message: $contact.elements.message.value,
+    name,
+    email,
+    message,
   };
 
-  console.log(obj, obj2, obj3);
+  console.log('Obj:', obj);
+  $contact.reset();
 }
