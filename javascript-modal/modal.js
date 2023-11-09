@@ -1,24 +1,13 @@
-let clickMod = 0;
-let clickNo = 0;
-
 const $button = document.querySelector('.modal');
 const $btn = document.querySelector('.no');
-const $cent = document.querySelector('.center');
+const $modal = document.querySelector('.modal-dialog');
 
 function show() {
-  clickMod++;
-  if (clickMod % 2 === 1) {
-    $cent.style.display = 'block';
-  } else {
-    $cent.style.display = 'none';
-  }
+  $modal.className = 'modal-dialog';
 }
 
 function hide() {
-  clickNo++;
-  if (clickNo % 2 === 0) {
-    $cent.style.display = 'none';
-  }
+  $modal.className = 'modal-dialog hidden';
 }
 
 $button.addEventListener('click', show);
