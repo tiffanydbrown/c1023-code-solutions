@@ -136,6 +136,16 @@
   color: #747474;
 }
 
+.column-full3 {
+  display: flex;
+  width: 100%;
+  padding-bottom: 1em;
+
+  /* background-color: #fafafa; */
+  color: #747474;
+  justify-content: center;
+}
+
 .started {
   display: flex;
   align-items: center;
@@ -145,15 +155,14 @@
   width: 150px;
   height: 40px;
   justify-content: center;
-  position: absolute;
+  position: static;
   bottom: -430px;
 }
 
 .whiteLogo {
   width: 150px;
   height: 30px;
-
-  /* padding: 1.5%; */
+  padding: 0.2em;
   display: flex;
   align-items: flex-end;
 }
