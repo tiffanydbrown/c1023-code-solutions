@@ -3,11 +3,11 @@
 let todos = [];
 
 const previousTodosJSON = localStorage.getItem('javascript-local-storage');
-todos = JSON.parse(previousTodosJSON);
+if (previousTodosJSON !== null) {
+  todos = JSON.parse(previousTodosJSON);
+}
 
 window.addEventListener('beforeunload', (event) => {
-  if (previousTodosJSON !== null) {
-    const todosJSON = JSON.stringify(todos);
-    localStorage.setItem('javascript-local-storage', todosJSON);
-  }
+  const todosJSON = JSON.stringify(todos);
+  localStorage.setItem('javascript-local-storage', todosJSON);
 });
