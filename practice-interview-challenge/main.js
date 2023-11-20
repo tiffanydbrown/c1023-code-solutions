@@ -1,7 +1,7 @@
 function getRangeReport(start, end) {
   const obj = {};
   const array = [];
-  let count = start;
+  let count = start - 1;
   let sum = 0;
 
   while (count <= end - 1) {
