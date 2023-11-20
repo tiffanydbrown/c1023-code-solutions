@@ -5,8 +5,10 @@
 After completing this exercise, you should be able to discuss or answer the following questions:
 
 - What is the syntax for writing a template literal?
+  The syntax for writing a template literal is to use backtics (``), and place the variable inside ${} without using concatenation.
 
 - What is "string interpolation"?
+  "String interpolation is to create strings by using substitution of placeholders.
 
 ## Notes
 
