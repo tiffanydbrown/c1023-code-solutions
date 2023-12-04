@@ -14,11 +14,11 @@ const doubled = numbers.map((n) => {
 console.log('doubled', doubled);
 
 console.log('\n\nExercise 2');
-function actOnEntries(obj, action) {
-  Object.entries(obj).forEach(function (e) {
+const actOnEntries = (obj, action) => {
+  Object.entries(obj).forEach((e) => {
     action(e);
   });
-}
+};
 
 actOnEntries(book, (entry) => {
   console.log(`${entry[0]} = ${entry[1]}`);
