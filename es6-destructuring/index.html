@@ -47,17 +47,16 @@
           libraryID: 1233,
         },
       ];
-      const book3 = library[0];
-      const book4 = library[1];
-      const book5 = library[2];
 
-      console.log('book3:', book3);
-      console.log('book4:', book4);
-      console.log('book5:', book5);
+      const [x, y, z] = library;
 
-      const book6 = library[3];
-      // const [, third] = book6;
-      console.log('book6:', book6);
+      console.log('book3:', x);
+      console.log('book4:', y);
+      console.log('book5:', z);
+
+      const [a] = library;
+
+      console.log('book6:', a);
     </script>
   </body>
 </html>
