@@ -10,8 +10,8 @@ const v4 = [3, 5, 7, 9];
  * In one expression, log "v2 is truthy" to the console only if `v2` is truthy.
  * Expected: v1 message logs, v2 message does not.
  */
-if (v1 && true) console.log('v1 is truthy');
-if (v2 && true) console.log('v2 is truthy');
+v1 && console.log('v1 is truthy');
+v2 && console.log('v2 is truthy');
 
 /* TODO:
  * Demonstrate how to assign a "default value" to a variable.
@@ -35,7 +35,7 @@ console.log('config1 = ', config1, 'config2 = ', config2);
 const cfg1 = v1 ?? 'default-value';
 const cfg2 = v2 ?? 'default-value';
 const cfg3 = v3 ?? 'default-value';
-console.log('cfg1 = ', cfg1, 'cfg2 = ', cfg2, 'cfg3 = ', cfg3);
+console.log('cfg1 = ', cfg1, 'cfg2 = ', `'${cfg2}'`, 'cfg3 = ', cfg3);
 
 /* TODO:
  * Use the shorthand if/else, which is especially useful for variable assignments.
