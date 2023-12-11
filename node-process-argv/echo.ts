@@ -1,1 +1,1 @@
-console.log('how do you do that?');
+console.log(process.argv[2]);
