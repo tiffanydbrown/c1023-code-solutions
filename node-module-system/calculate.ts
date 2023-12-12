@@ -3,15 +3,23 @@ import { subtract } from './subtract.js';
 import { multiply } from './multiply.js';
 import { divide } from './divide.js';
 
-const addOperand = add(Number(process.argv[4]), Number(process.argv[2]));
-const minusOperand = subtract(Number(process.argv[4]), Number(process.argv[2]));
-const divideOperand = divide(Number(process.argv[4]), Number(process.argv[2]));
-const multiplyOperand = multiply(
-  Number(process.argv[2]),
-  Number(process.argv[4])
-);
+const operand = process.argv[3];
+const num1 = Number(process.argv[2]);
+const num2 = Number(process.argv[4]);
+let result;
 
-console.log('result:', addOperand);
-console.log('result:', minusOperand);
-console.log('result:', divideOperand);
-console.log('result:', multiplyOperand);
+switch (operand) {
+  case 'plus':
+    result = add(num1, num2);
+    break;
+  case 'minus':
+    result = subtract(num2, num1);
+    break;
+  case 'times':
+    result = multiply(num1, num2);
+    break;
+  case 'over':
+    result = divide(num2, num1);
+    break;
+}
+console.log(result);
