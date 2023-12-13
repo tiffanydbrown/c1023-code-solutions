@@ -9,8 +9,6 @@ const elapsed = (): string =>
 async function throwOnce(): Promise<void> {
   const msg = await read('foo', false);
   console.log(elapsed(), 'throwOnce:', msg);
-
-  //  console.log(elapsed(), 'throwOnce Error:', error.message);
 }
 
 async function throwSeveral(): Promise<void> {
@@ -41,9 +39,7 @@ async function main(): Promise<void> {
     await throwSeveral();
     await throwChained();
   } catch (error: any) {
-    console.log(elapsed(), 'throwOnce Error:', error.message);
-    console.log(elapsed(), 'throwSeveral Error:', error.message);
-    console.log(elapsed(), 'throwChained Error:', error.message);
+    console.log('Error:', error);
   }
 }
 
