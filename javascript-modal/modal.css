@@ -1,0 +1,48 @@
+.container.modalLight {
+  background-color: #fff;
+}
+
+.modal-content {
+  background-color: white;
+}
+
+.hidden {
+  display: none !important;
+}
+
+.modal-dialog {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(0, 0, 0, 0.8);
+}
+
+.modal {
+  background-color: #4b4ae9;
+  color: #fefefe;
+  padding: 5px 10px;
+  height: 40px;
+  width: 140px;
+  border-radius: 5px;
+  font-size: 18px;
+  font-family: Arimo, sans-serif;
+}
+
+.no {
+  color: #fefefe;
+  background-color: #eb5d5d;
+  padding: 5px 10px;
+  height: 40px;
+  width: 90px;
+  border-radius: 5px;
+  font-size: 18px;
+  font-family: Arimo, sans-serif;
+  margin-left: 10em;
+  margin-bottom: 3em;
+  margin-top: 2em;
+}
