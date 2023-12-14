@@ -4,6 +4,4 @@ takeAChance('Tiffany')
   .then((resolve: string) => {
     console.log(resolve);
   })
-  .catch((error) => {
-    console.log(error.message);
-  });
+  .catch((error) => console.log(error.message));
