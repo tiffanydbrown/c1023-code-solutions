@@ -43,12 +43,11 @@ app.listen(8080, () => {
 });
 
 app.delete('/api/grades/:id', (req, res) => {
-  const gradeId = req.params.id;
-
-  delete grades[gradeId];
-  res.sendStatus(204);
-  if (!gradeId) {
+  const id = +req.params.id;
+  if (!grades[id]) {
     res.sendStatus(404);
+  } else {
+    delete grades[id];
+    res.sendStatus(204);
   }
-  return gradeId;
 });
