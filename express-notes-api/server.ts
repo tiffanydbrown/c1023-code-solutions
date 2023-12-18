@@ -61,7 +61,7 @@ app.post('/api/notes', async (req, res) => {
 
     await write(data);
 
-    res.json(data.notes[newPost.id]);
+    res.json(data.notes[newPost]);
   } catch (error) {
     console.error(error);
     res.status(500).json({ error: 'An unexpected error occurred.' });
@@ -75,9 +75,6 @@ app.delete('/api/notes/:id', async (req, res) => {
 
     if (!data.notes[id]) {
       res.status(400).json({ Error: 'ID invalid' });
-    }
-    if (req.body && req.body.content) {
-      res.status(404).json({ Error: 'Bad Request: Content is required.' });
     }
 
     delete data.notes[id];
@@ -94,12 +91,12 @@ app.put('/api/notes/:id', async (req, res) => {
     const id = Number(req.params.id);
     const data = await read();
 
-    // if (!data.notes[id]) {
-    //   res.status(400).json({ Error: 'ID invalid' });
-    // }
-    // if (!req.body || !req.body.content) {
-    //   res.status(404).json({ Error: 'Bad Request: Content is required.' });
-    // }
+    if (!data.notes[id]) {
+      res.status(400).json({ Error: 'ID invalid' });
+    }
+    if (!req.body || !req.body.content) {
+      res.status(404).json({ Error: 'Bad Request: Content is required.' });
+    }
 
     data.notes[id] = req.body;
     data.notes[id].id = id;
