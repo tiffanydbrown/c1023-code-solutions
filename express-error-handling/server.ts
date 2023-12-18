@@ -46,8 +46,7 @@ app.get('/api/notes/:id', async (req, res, next) => {
       throw new ClientError(400, 'id must be a positive integer');
     }
     if (data.notes[id] === undefined) {
-      res.status(404).json({ error: `cannot find note with id ${id}` });
-      return;
+      throw new ClientError(404, `cannot find note with id ${id}`);
     }
     res.json(data.notes[id]);
   } catch (err) {
@@ -59,8 +58,7 @@ app.post('/api/notes', async (req, res, next) => {
   try {
     const { content } = req.body;
     if (content === undefined) {
-      res.status(400).json({ error: 'content is a required field' });
-      return;
+      throw new ClientError(400, 'content is a required field');
     }
     const data = await readData();
     const note = {
@@ -84,8 +82,7 @@ app.delete('/api/notes/:id', async (req, res, next) => {
     }
     const data = await readData();
     if (data.notes[id] === undefined) {
-      res.status(404).json({ error: `cannot find note with id ${id}` });
-      return;
+      throw new ClientError(404, `cannot find note with id ${id}`);
     }
     delete data.notes[id];
     await writeData(data);
@@ -103,13 +100,11 @@ app.put('/api/notes/:id', async (req, res, next) => {
     }
     const { content } = req.body;
     if (content === undefined) {
-      res.status(400).json({ error: 'content is a required field' });
-      return;
+      throw new ClientError(400, 'content is a required field');
     }
     const data = await readData();
     if (data.notes[id] === undefined) {
-      res.status(404).json({ error: `cannot find note with id ${id}` });
-      return;
+      throw new ClientError(404, `cannot find note with id ${id}`);
     }
     const note = {
       id,
