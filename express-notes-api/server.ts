@@ -2,32 +2,42 @@ import express from 'express';
 
 import { readFile, writeFile } from 'node:fs/promises';
 
-type Note = {
-  nextId: number;
-  notes: {
-    id: number;
-    content: string;
-  }[];
+type Content = {
+  id: number;
+  content: string;
 };
 
-let nextId: number = 1;
+type Note = {
+  nextId: number;
+  notes: Record<number, Content>;
+};
 
-const notes: Record<number, Note> = {};
+// const notes: Record<number, Note> = {};
+async function read(): Promise<Note> {
+  const contents = await readFile('data.json', 'utf-8');
+  return JSON.parse(contents);
+}
+
+async function write(data: Note): Promise<void> {
+  await writeFile('data.json', JSON.stringify(data, null, 2), 'utf-8');
+}
 
 const app = express();
 app.use(express.json());
 
-app.get('/api/notes', (req, res) => {
-  const notesArray: Note[] = [];
-  for (const prop in notes) {
-    notesArray.push(notes[prop]);
+app.get('/api/notes', async (req, res) => {
+  const data = await read();
+  const notesArray: Content[] = [];
+  for (const prop in data.notes) {
+    notesArray.push(data.notes[prop]);
   }
   res.json(notesArray);
 });
 
-app.get('/api/notes/:id', (req, res) => {
+app.get('/api/notes/:id', async (req, res) => {
+  const data = await read();
   const id = +req.params.id;
-  const note = notes[id];
+  const note = data.notes[id];
 
   if (!note) {
     res.status(404).send({ Error: 'Note does not exist' });
@@ -39,18 +49,19 @@ app.get('/api/notes/:id', (req, res) => {
 });
 
 app.post('/api/notes', async (req, res) => {
+  const data = await read();
   try {
     if (!req.body) {
       res.status(400).send({ Error: 'No content' });
     }
     const newPost = req.body;
-    newPost.id = nextId;
-    notes[nextId] = newPost;
-    nextId++;
+    newPost.id = data.nextId;
+    data.notes[data.nextId] = newPost;
+    data.nextId++;
 
-    await write(notes);
+    await write(data);
 
-    res.json(notes[newPost.id]);
+    res.json(data.notes[newPost.id]);
   } catch (error) {
     console.error(error);
     res.status(500).json({ error: 'An unexpected error occurred.' });
@@ -58,18 +69,19 @@ app.post('/api/notes', async (req, res) => {
 });
 
 app.delete('/api/notes/:id', async (req, res) => {
+  const data = await read();
   try {
     const id = Number(req.params.id);
 
-    if (!notes[id]) {
+    if (!data.notes[id]) {
       res.status(400).json({ Error: 'ID invalid' });
     }
     if (req.body && req.body.content) {
       res.status(404).json({ Error: 'Bad Request: Content is required.' });
     }
 
-    delete notes[id];
-    await write(notes);
+    delete data.notes[id];
+    await write(data);
     res.sendStatus(204);
   } catch (error) {
     console.error(error);
@@ -82,14 +94,15 @@ app.put('/api/notes/:id', async (req, res) => {
     const id = Number(req.params.id);
     const data = await read();
 
-    if (!data.notes[id]) {
-      res.status(400).json({ Error: 'ID invalid' });
-    }
-    if (!req.body || !req.body.content) {
-      res.status(404).json({ Error: 'Bad Request: Content is required.' });
-    }
+    // if (!data.notes[id]) {
+    //   res.status(400).json({ Error: 'ID invalid' });
+    // }
+    // if (!req.body || !req.body.content) {
+    //   res.status(404).json({ Error: 'Bad Request: Content is required.' });
+    // }
 
-    data.notes[id].content = req.body.content;
+    data.notes[id] = req.body;
+    data.notes[id].id = id;
     await write(data);
     res.json(data.notes[id]);
   } catch (error) {
@@ -101,12 +114,3 @@ app.put('/api/notes/:id', async (req, res) => {
 app.listen(8080, () => {
   console.log('Express server listening on port 8080');
 });
-
-async function read(): Promise<Note> {
-  const contents = await readFile('data.json', 'utf-8');
-  return JSON.parse(contents);
-}
-
-async function write(data: Note): Promise<void> {
-  await writeFile('data.json', JSON.stringify(data, null, 2), 'utf-8');
-}

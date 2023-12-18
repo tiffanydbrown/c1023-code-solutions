@@ -1,14 +1,21 @@
 {
-  "1": {
-    "content": "Yesterday was Friday",
-    "id": 1
-  },
-  "3": {
-    "content": "Tomorrow is Sunday",
-    "id": 3
-  },
-  "4": {
-    "content": "What will I have for dinner?",
-    "id": 4
+  "nextId": 12,
+  "notes": {
+    "5": {
+      "id": 5,
+      "content": "In JavaScript, the value of `this` is determined when a function is called; not when it is defined."
+    },
+    "6": {
+      "id": 6,
+      "content": "A closure is formed when a function retains access to variables in its lexical scope."
+    },
+    "9": {
+      "id": 9,
+      "content": "Inertia is a property of matter."
+    },
+    "11": {
+      "content": "help",
+      "id": 11
+    }
   }
 }
