@@ -15,8 +15,10 @@ After completing this exercise, you should be able to discuss or answer the foll
   You can temporarily rename columns or tables by using aliases. select "table1 name"."joined column name" as "alias", "table22 name"."joined column name" as "alias"
 
 - How do you create a one-to-many relationship between two tables?
+  You create a one-to-many relationship between two tables by selecting multiple columns from one table.
 
 - How do you create a many-to-many relationship between two tables?
+  You can create a many-to-many relationship between two tables by selecting multiple columns from one table, and joining multiple tables together.
 
 ## Notes
 
