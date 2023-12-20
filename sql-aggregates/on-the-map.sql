@@ -1,5 +1,5 @@
-select "cities"."name" as "city",
+select "countries"."name" as "countries",
       count(*) as "totalCities"
   from "cities"
   join "countries" using ("countryId")
-  group by "cities"."name";
+  group by "countryId";
