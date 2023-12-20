@@ -6,11 +6,9 @@ import { errorMiddleware } from './error-middleware.js';
 const app = express();
 app.use(express.json());
 
-// only create ONE pool for your whole server
 const db = new pg.Pool({
   connectionString: 'postgres://dev:dev@localhost/studentGradeTable',
   ssl: {
-    // Allow non-SSL traffic to localhost
     rejectUnauthorized: false,
   },
 });
@@ -23,20 +21,17 @@ app.get('/api/grades', async (req, res, next) => {
     `;
 
     const result = await db.query(sql);
-
-    const grade = result.rows;
-
-    res.json(grade);
+    const grades = result.rows;
+    res.json(grades);
   } catch (err) {
     next(err);
-    res.status(500).json({ error: 'an unexpected error occurred' });
   }
 });
 
 app.get('/api/grades/:gradeId', async (req, res, next) => {
   try {
     const gradeId = Number(req.params.gradeId);
-    if (!Number.isInteger(gradeId) || gradeId <= 0 || Number.isNaN(gradeId)) {
+    if (!Number.isInteger(gradeId) || gradeId <= 0) {
       throw new ClientError(400, `"gradeId" must be a positive integer`);
     }
 
@@ -47,7 +42,6 @@ app.get('/api/grades/:gradeId', async (req, res, next) => {
     `;
     const params = [gradeId];
     const result = await db.query(sql, params);
-
     const grade = result.rows[0];
     if (!grade) {
       throw new ClientError(404, `Cannot find grade with "gradeId" ${gradeId}`);
@@ -56,34 +50,31 @@ app.get('/api/grades/:gradeId', async (req, res, next) => {
     res.json(grade);
   } catch (err) {
     next(err);
-    res.status(500).json({ error: 'an unexpected error occurred' });
   }
 });
 
 app.post('/api/grades', async (req, res, next) => {
   try {
+    const { name, course, score } = req.body;
+    if (!name) throw new ClientError(400, 'User did not input name');
+    if (!course) throw new ClientError(400, 'User did not input course');
+    if (!score) throw new ClientError(400, 'User did not input score');
+    if (!Number.isInteger(score) || +score < 0 || score > 100) {
+      throw new ClientError(400, 'Score is not an integer between 0 and 100');
+    }
+
     const sql = `
       insert into "grades" ("course", "name", "score")
         values($1, $2, $3)
       returning *;
     `;
-    const body = req.body;
-    const params = [body.course, body.name, body.score];
+
+    const params = [course, name, +score];
     const result = await db.query(sql, params);
-
     const grade = result.rows[0];
-    const gradeId = Number(req.params.gradeId);
-    if (!gradeId) {
-      throw new ClientError(404, `Cannot find grade with "gradeId" ${gradeId}`);
-    }
-    if (!Number.isInteger(gradeId) || gradeId <= 0 || Number.isNaN(gradeId)) {
-      throw new ClientError(400, '"gradeId" must be a positive integer');
-    }
-
     res.json(grade);
   } catch (err) {
     next(err);
-    res.status(500).json({ error: 'an unexpected error occurred' });
   }
 });
 
@@ -93,6 +84,13 @@ app.put('/api/grades/:gradeId', async (req, res, next) => {
     if (!Number.isInteger(gradeId) || gradeId <= 0 || Number.isNaN(gradeId)) {
       throw new ClientError(400, '"gradeId" must be a positive integer');
     }
+    const { name, course, score } = req.body;
+    if (!name) throw new ClientError(400, 'User did not input name');
+    if (!course) throw new ClientError(400, 'User did not input course');
+    if (!score) throw new ClientError(400, 'User did not input score');
+    if (!Number.isInteger(score) || +score < 0 || score > 100) {
+      throw new ClientError(400, 'Score is not an integer between 0 and 100');
+    }
 
     const sql = `
       update "grades"
@@ -100,20 +98,15 @@ app.put('/api/grades/:gradeId', async (req, res, next) => {
             "name" = $2,
             "score" = $3
         where "gradeId" = $4
+      returning *;
     `;
 
-    const body = req.body;
-    const params = [body.course, body.name, body.score, body.gradeId];
+    const params = [course, name, +score, gradeId];
     const result = await db.query(sql, params);
-
     const grade = result.rows;
-    if (!grade) {
-      throw new ClientError(404, `Cannot find grade with "gradeId" ${gradeId}`);
-    }
     res.json(grade);
   } catch (err) {
     next(err);
-    res.status(500).json({ error: 'an unexpected error occurred' });
   }
 });
 
@@ -139,10 +132,9 @@ app.delete('/api/grades/:gradeId', async (req, res, next) => {
       throw new ClientError(404, `Cannot find grade with "gradeId" ${gradeId}`);
     }
 
-    res.json(grade);
+    res.sendStatus(204);
   } catch (err) {
     next(err);
-    res.status(500).json({ error: 'an unexpected error occurred' });
   }
 });
 
