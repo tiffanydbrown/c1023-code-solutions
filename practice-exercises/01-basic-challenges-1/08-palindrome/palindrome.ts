@@ -1,6 +1,9 @@
-// export function isPalindrome(str: string): boolean {
-//   const regex = /[^a-z0-9]/g;
-//   const alphaStr = str.replace(regex, '');
-//   const newStr = alphaStr.toLowerCase();
-//   return false;
-// }
+export function isPalindrome(str: string): boolean {
+  const newStr = str.toLowerCase().replace(/[^a-z0-9]/g, '');
+  const palinStr = newStr.split('').reverse().join('');
+
+  if (newStr === palinStr) {
+    return true;
+  }
+  return false;
+}
