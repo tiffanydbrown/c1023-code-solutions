@@ -1,5 +1,14 @@
-// export function underThirty(people) {
-//   const peopleUnderThirty = people.filter((person) => person.age < 30);
+interface Person {
+  name: {
+    first: string;
+    last: string;
+  };
+  age: number;
+  id: number;
+}
 
-//   return peopleUnderThirty;
-// }
+export function underThirty(people: Array<Person>): Array<Person> {
+  const peopleUnderThirty = people.filter((person) => person.age < 30);
+
+  return peopleUnderThirty;
+}
