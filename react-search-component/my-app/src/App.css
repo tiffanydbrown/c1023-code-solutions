@@ -1,0 +1,21 @@
+#root {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 2rem;
+  text-align: center;
+}
+
+.magsearch {
+  margin-right: 35rem;
+  padding-bottom: 1rem;
+}
+
+.search {
+  padding-left: 20px;
+  background: url('search-solid.svg') no-repeat 2px;
+  background-size: 14px;
+}
+
+.list {
+  text-align: left;
+}
