@@ -12,8 +12,6 @@ export function List() {
   //    - Read the items using `readItems` and update state so the list displays
   //    - Handle errors from `readItems`
   useEffect(() => {
-    readItems();
-
     async function fetchData() {
       try {
         const data = await readItems();
@@ -24,10 +22,7 @@ export function List() {
         setIsLoading(false);
       }
     }
-
     fetchData();
-
-    return () => {};
   }, []);
 
   if (isLoading) {
