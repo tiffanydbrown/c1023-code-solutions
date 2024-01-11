@@ -1,62 +1,85 @@
-// import { FaBars } from 'react-icons/fa6';
-// import './AppDrawerComponent.css';
-// import { useState } from 'react';
+import { FaBars } from 'react-icons/fa6';
+import './AppDrawerComponent.css';
+import { useState } from 'react';
 
-// type Props = {
-//   items: string[];
-// };
+export type MenuItem = { label: string };
 
-// export function AppDrawerComponent({ items }: Props) {
-//   const [openMenu, setOpenMenu] = useState(false);
+type Props = {
+  header: string;
+  items: MenuItem[];
+  onSelect: (item: MenuItem) => void;
+};
 
-//   function handleClick() {
-//     setOpenMenu(!openMenu);
-//   }
+export function AppDrawerComponent({ header, items, onSelect }: Props) {
+  const [openMenu, setOpenMenu] = useState(true);
 
-//   return (
-//     <div>
-//       <Drawer onClick={handleClick} />
-//       <MenuComponent onClick={handleClick} openMenu={openMenu} />
-//       <div className={openMenu ? 'menu-shade is-drawn' : 'menu-shade'}></div>
-//     </div>
-//   );
-// }
+  function handleSelect(item: MenuItem): void {
+    setOpenMenu(false);
+    onSelect(item);
+  }
 
-// type DrawerProps = {
-//   onClick: () => void;
-// };
+  return (
+    <div>
+      <MenuComponent
+        onSelect={handleSelect}
+        openMenu={openMenu}
+        header={header}
+        items={items}
+        onOpen={() => setOpenMenu(true)}
+      />
+      <Shade isOpen={openMenu} onClick={() => setOpenMenu(false)} />
+    </div>
+  );
+}
 
-// function Drawer({ onClick }: DrawerProps) {
-//   return (
-//     <div onClick={onClick} className="menu-icon">
-//       <FaBars />
-//     </div>
-//   );
-// }
+type MenuComponentProps = {
+  openMenu: boolean;
+  header: string;
+  items: MenuItem[];
+  onOpen: () => void;
+  onSelect: (item: MenuItem) => void;
+};
 
-// type MenuComponentProps = {
-//   openMenu: boolean;
-//   onClick: () => void;
-// };
+function MenuComponent({
+  openMenu,
+  header,
+  items,
+  onOpen,
+  onSelect,
+}: MenuComponentProps) {
+  if (!openMenu) {
+    return <FaBars onClick={onOpen} className="menu-icon" />;
+  }
 
-// function MenuComponent({ openMenu, onClick }: MenuComponentProps) {
-//   const [openLink, setOpenLink] = useState(0);
+  return (
+    <div className={`menu-drawer ${openMenu ? 'is-open' : ''}`}>
+      <h2 className="menu-heading">{header}</h2>
+      <ul className="menu-items">
+        {items.map((item, index) => (
+          <li
+            key={index}
+            onClick={() => {
+              onSelect(item);
+              onOpen();
+            }}
+            className="menu-item">
+            {item.label}
+          </li>
+        ))}
+      </ul>
+    </div>
+  );
+}
 
-//   function handleClickPage() {
-//     setOpenLink(openLink);
-//   }
-//   return (
-//     <div
-//       onClick={onClick}
-//       className={openMenu ? 'menu-drawer is-open' : 'menu-drawer'}>
-//       <h2 className="menu-heading">Choose a Game</h2>
-//       <p onClick={handleClickPage} className="menu-item">
-//         The Legend of Zelda
-//       </p>
-//       <p className="menu-item">A Link to the Past</p>
-//       <p className="menu-item">Ocarina of Time</p>
-//       <p className="menu-item">The Wind Waker</p>
-//       <p className="menu-item">Breath of the Wild</p>
-//     </div>
-//   );
-// }
+type ShadeProps = {
+  isOpen: boolean;
+  onClick: () => void;
+};
+
+function Shade({ isOpen, onClick }: ShadeProps) {
+  return (
+    <div
+      onClick={onClick}
+      className={`menu-shade ${isOpen ? 'is-drawn' : ''}`}></div>
+  );
+}
