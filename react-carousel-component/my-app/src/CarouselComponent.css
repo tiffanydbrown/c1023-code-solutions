@@ -1,8 +1,9 @@
 .carousel {
   position: relative;
+  display: flex;
   width: 100%;
   max-width: 600px;
-  margin: auto;
+  margin: 2rem auto;
 }
 
 .photo {
@@ -15,8 +16,9 @@
 
 .current-image {
   width: 100%;
-  height: 100%;
-  object-fit: cover;
+  height: 550px;
+  object-fit: contain;
+  object-position: center;
 }
 
 .previous,
