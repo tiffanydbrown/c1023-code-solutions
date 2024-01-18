@@ -8,6 +8,7 @@ Answer the following questions in the provided markdown file before turning in t
   First In First Out
 
 - What methods are available on a Queue data structure?
+  enqueue(), dequeue(), and peek() are the available methods.
 
 - What must you do to access the value at an arbitrary point in a queue (not just the "front")?
 
