@@ -1,0 +1,56 @@
+.carousel {
+  position: relative;
+  display: flex;
+  width: 100%;
+  max-width: 600px;
+  margin: 2rem auto;
+}
+
+.photo {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 300px;
+  overflow: hidden;
+}
+
+.current-image {
+  width: 100%;
+  height: 550px;
+  object-fit: contain;
+  object-position: center;
+}
+
+.previous,
+.next {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 48px;
+  cursor: pointer;
+}
+
+.previous {
+  left: 50px;
+}
+
+.next {
+  right: 50px;
+}
+
+.circles {
+  display: flex;
+  justify-content: center;
+  margin-top: 10px;
+}
+
+.fa-circle {
+  font-size: 30px;
+  margin: 0 5px;
+  cursor: pointer;
+  color: #ccc;
+}
+
+.fa-circle.selected {
+  color: #333;
+}
