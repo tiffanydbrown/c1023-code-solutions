@@ -10,6 +10,9 @@ No, but developers who use AI more than likely will replace those who don't. (TB
 
 AI will be a powerful tool, but software development is about more than just writing code. It involves creativity, collaboration, and judgment, which are inherently human qualities. Rather than replacing developers, AI will empower them to be more efficient, innovative, and focused on solving meaningful problems. (ChatGPT)
 
+Observations:
+ChaptGPT holds the same ideas as the reading that AI can be useful for software developers, but won't replace them completely, because there are aspects of development where developers are needed. AI can aid developers in completing their tasks, but can never replace the human element altogether.
+
 - What is the best way to use AI tools when learning software development?
 
 When learning it is best to use AI tools to ask questions about coding syntax, explain concepts, quiz your knowledge, etc.(TB)
@@ -80,6 +83,9 @@ Using AI tools effectively while learning software development can significantly
 - **Embrace Mistakes**: Analyze where AI-generated code might be incorrect or suboptimal to improve your debugging skills.
 
 By integrating AI tools into your learning process thoughtfully, you’ll not only learn faster but also develop critical thinking skills and confidence as a developer. (ChatGPT)
+
+Observations:
+ChaptGPT and the reading also agree about the benefits of using AI when learning software development. ChatGPT gave three additional tips on how AI can benefit developers. I agree that these ideas are really good ideas, but with the caveat that they should be learned once someone has learned to code, and not at the very beginning of their journey. I think if they are too close to the beginning that using AI can end up being a crutch.
 
 - What is the danger of using AI tools for software development while I'm still learning?
 
@@ -164,3 +170,6 @@ While AI tools can be incredibly helpful for learning software development, ther
 - **Stay Curious**: Use AI to enhance your curiosity by asking "why" and "how" instead of just "what."
 
 By being mindful of these risks and taking proactive steps, you can maximize the benefits of AI tools while avoiding potential pitfalls during your software development journey. (ChatGPT)
+
+Observations:
+Finally, both the reading and ChatGPT point out good reasons that using AI as a software learner can be dangerous. I agree with the reasons as I found myself relying on it at one point too much and had to wean myself off of it in order to use it correctly. Now it's a great aid. However, so me people may never get off of it as a crutch, and won't grow as a developer.
